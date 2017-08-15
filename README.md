@@ -1,8 +1,17 @@
 # BetterResources
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/better_resources`. To experiment with that code, run `bin/console` for an interactive prompt.
+One crappy thing about Rails resources is that when a user creates a new
+record or edits an existing record, the forms POST or PATCH to different
+URLs than the forms. This means that if something goes wrong and the
+user tries to refresh the page, they receive a 404 because GET for
+/posts does not exist.
 
-TODO: Delete this and the text above, and describe your gem
+This gem addresses that by adding `better_resources` routes,
+`better_form_with` and `better_form_for`. These generate the proper URLs
+and forms to handle this problem.
+
+We opted not to override the Rails helpers so that these don't interfer
+at all with your existing code.
 
 ## Installation
 
@@ -22,7 +31,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Then you can change your routes to use `better_resources`
+
+```ruby
+# config/routes.rb
+better_resources :posts
+```
+
+And your forms can now use `better_form_with` or `better_form_for` to
+match the routes:
+
+```ruby
+<%= better_form_for(user) do |form| %>
+<% end %>
+
+<%# or %>
+
+<%= better_form_with(model: user) do |form| %>
+<% end %>
+```
+
+And that's it!
 
 ## Development
 
