@@ -41,7 +41,7 @@ better_resources :posts
 And your forms can now use `better_form_with` or `better_form_for` to
 match the routes:
 
-```ruby
+```erb
 <%= better_form_for(user) do |form| %>
 <% end %>
 
